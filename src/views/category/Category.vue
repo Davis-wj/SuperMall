@@ -118,7 +118,8 @@ export default {
   mounted() {
     this.scroll = new BScroll('.wrapper', {
       probeType: 3,
-      pullUpLoad: true
+      pullUpLoad: true,
+      click: true
     });
 
     this.scroll.on('scroll', position => {
