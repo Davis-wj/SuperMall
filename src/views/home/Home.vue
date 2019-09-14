@@ -69,13 +69,24 @@ export default {
       isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
+      saveY: 0,
     };
   },
   computed: {
     showGoods() {
       return this.goods[this.currentType].list;
-    }
+    },
   },
+    activated () {
+      this.$refs.scroll.scrollTo(0, this.saveY, 0)
+      this.$refs.scroll.refresh()  //该处为了是防止BScroll重新回到顶部的BUG
+      // console.log('A')
+    },
+    deactivated () {
+      this.saveY = this.$refs.scroll.getScrollY()
+      console.log(this.saveY)
+      // console.log('d')
+    },
   created() {
     // 1.请求多个数据
     this.getHomeMultidata();
